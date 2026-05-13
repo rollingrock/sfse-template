@@ -20,8 +20,7 @@ jobs:
     # may not have yet. CI uses the generator-agnostic `ninja` preset instead so
     # it works on any image that ships an MSVC toolchain.
     env:
-      VCPKG_ROOT: ${{ github.workspace }}/vcpkg
-      VCPKG_DEFAULT_BINARY_CACHE: ${{ github.workspace }}/vcpkg/bincache
+      VCPKG_DEFAULT_BINARY_CACHE: ${{ github.workspace }}/vcpkg-bincache
 
     steps:
       - name: Checkout
@@ -32,12 +31,16 @@ jobs:
         with:
           arch: x64
 
-      - name: Bootstrap vcpkg
+      - name: Configure vcpkg env
         shell: pwsh
         run: |
-          git clone --depth 1 https://github.com/microsoft/vcpkg.git "$env:VCPKG_ROOT"
-          & "$env:VCPKG_ROOT\bootstrap-vcpkg.bat" -disableMetrics
+          # ilammy/msvc-dev-cmd runs vcvarsall.bat which sets VCPKG_ROOT to the
+          # VS-bundled vcpkg (no manifest-mode bootstrap). Override it to the
+          # runner's standalone vcpkg install, which is kept current and supports
+          # manifest mode out of the box.
+          "VCPKG_ROOT=$env:VCPKG_INSTALLATION_ROOT" | Out-File -Append -Encoding utf8 $env:GITHUB_ENV
           New-Item -ItemType Directory -Force -Path "$env:VCPKG_DEFAULT_BINARY_CACHE" | Out-Null
+          Write-Host "Using vcpkg at $env:VCPKG_INSTALLATION_ROOT"
 
       - name: Cache vcpkg binary cache
         uses: actions/cache@v4
