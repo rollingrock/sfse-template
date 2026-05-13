@@ -31,6 +31,9 @@ jobs:
         with:
           arch: x64
 
+      - name: Install Ninja
+        uses: seanmiddleditch/gha-setup-ninja@master
+
       - name: Configure vcpkg env
         shell: pwsh
         run: |
@@ -41,6 +44,19 @@ jobs:
           "VCPKG_ROOT=$env:VCPKG_INSTALLATION_ROOT" | Out-File -Append -Encoding utf8 $env:GITHUB_ENV
           New-Item -ItemType Directory -Force -Path "$env:VCPKG_DEFAULT_BINARY_CACHE" | Out-Null
           Write-Host "Using vcpkg at $env:VCPKG_INSTALLATION_ROOT"
+
+      - name: Fetch vcpkg baseline commit
+        shell: pwsh
+        run: |
+          # vcpkg.json pins a specific builtin-baseline. The runner's vcpkg clone
+          # may not contain that commit yet, so fetch it before configure.
+          $baseline = (Get-Content vcpkg.json | ConvertFrom-Json)."builtin-baseline"
+          if (-not $baseline) {
+              Write-Host "No builtin-baseline pinned - skipping fetch"
+              exit 0
+          }
+          Write-Host "Fetching vcpkg baseline $baseline into $env:VCPKG_INSTALLATION_ROOT"
+          git -C "$env:VCPKG_INSTALLATION_ROOT" fetch --depth=1 origin $baseline
 
       - name: Cache vcpkg binary cache
         uses: actions/cache@v4
