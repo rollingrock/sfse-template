@@ -21,8 +21,8 @@ It produces a single DLL that:
 
 ```pwsh
 # 1. Clone
-git clone https://github.com/<you>/sfse-template-plugin.git
-cd sfse-template-plugin
+git clone https://github.com/rollingrock/sfse-template.git
+cd sfse-template
 
 # 2. (optional) point CMake at your vcpkg install
 $env:VCPKG_ROOT = "C:\vcpkg"
