@@ -1,0 +1,10 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg/master/scripts/vcpkg.schema.json",
+  "name": "sfse-template-plugin",
+  "version-string": "0.1.0",
+  "description": "Hello-world Starfield Script Extender plugin template",
+  "builtin-baseline": "2a097d761428092eed3e356b846671d02f04b688",
+  "dependencies": [
+    "spdlog"
+  ]
+}

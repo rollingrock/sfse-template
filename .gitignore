@@ -1,0 +1,45 @@
+# Build output
+build/
+out/
+install/
+[Dd]ebug/
+[Rr]elease/
+[Rr]elWithDebInfo/
+[Mm]inSizeRel/
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+CMakeUserPresets.json
+cmake-build-*/
+_deps/
+
+# vcpkg
+vcpkg_installed/
+
+# IDEs / editors
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.sln.docstates
+
+# Compiled binaries
+*.dll
+*.exe
+*.pdb
+*.lib
+*.exp
+*.ilk
+*.obj
+
+# OS junk
+Thumbs.db
+.DS_Store
+
+# Local overrides
+local.cmake
+
+# Claude Code user-local settings (project-shared settings.json may be committed)
+.claude/settings.local.json
