@@ -10,7 +10,7 @@
 include_guard(GLOBAL)
 
 set(SFSE_GIT_REPOSITORY "https://github.com/ianpatt/sfse.git" CACHE STRING "SFSE git repository URL")
-set(SFSE_GIT_TAG        "v0.2.19"                             CACHE STRING "SFSE git tag/branch/commit")
+set(SFSE_GIT_TAG        "v0.2.20"                             CACHE STRING "SFSE git tag/branch/commit")
 
 if(NOT SFSE_LOCAL_PATH AND DEFINED ENV{SFSE_LOCAL_PATH})
     set(SFSE_LOCAL_PATH "$ENV{SFSE_LOCAL_PATH}" CACHE PATH "Path to a local SFSE source checkout")

@@ -5,7 +5,7 @@ A minimal "hello world" template for building a [Starfield Script Extender](http
 It produces a single DLL that:
 
 - Declares itself an SFSE plugin (`SFSEPlugin_Version` + `SFSEPlugin_Load`)
-- Targets Starfield **1.16.236** / SFSE **0.2.19**
+- Targets Starfield **1.16.242** / SFSE **0.2.20**
 - Registers a messaging listener with SFSE and logs every lifecycle message it receives
 - Writes a log to `Documents\My Games\Starfield\SFSE\Logs\sfse-template-plugin.log`
 
@@ -38,16 +38,16 @@ Drop that DLL into `<your Starfield install>\Data\SFSE\Plugins\` and launch the 
 
 ## Using a local SFSE checkout
 
-By default the CMake configure step uses `FetchContent` to clone `ianpatt/sfse` at tag `v0.2.19`. If you already have an SFSE source tree on disk, point CMake at it:
+By default the CMake configure step uses `FetchContent` to clone `ianpatt/sfse` at tag `v0.2.20`. If you already have an SFSE source tree on disk, point CMake at it:
 
 ```pwsh
-cmake --preset default -DSFSE_LOCAL_PATH="C:/path/to/sfse-0.2.19"
+cmake --preset default -DSFSE_LOCAL_PATH="C:/path/to/sfse-0.2.20"
 ```
 
 or set it as an environment variable:
 
 ```pwsh
-$env:SFSE_LOCAL_PATH = "C:/path/to/sfse-0.2.19"
+$env:SFSE_LOCAL_PATH = "C:/path/to/sfse-0.2.20"
 cmake --preset default
 ```
 

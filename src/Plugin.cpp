@@ -125,7 +125,7 @@ __declspec(dllexport) SFSEPluginVersionData SFSEPlugin_Version =
 
     0,  // not address independent
     SFSEPluginVersionData::kStructureIndependence_1_14_70_Layout,
-    { RUNTIME_VERSION_1_16_236, 0 },
+    { RUNTIME_VERSION_1_16_242, 0 },
 
     0,  // any SFSE version
     0, 0,
